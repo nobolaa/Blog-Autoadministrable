@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="subcontenedor py-8">
         <h1 class="uppercase text-center text-3xl font-bold">
-            Categoría: {{$category->name}}
+            Etiqueta: {{$tag->name}}
         </h1>
 
         @foreach ($posts as $post)
