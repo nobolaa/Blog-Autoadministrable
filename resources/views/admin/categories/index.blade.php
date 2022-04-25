@@ -7,6 +7,12 @@
 @stop
 
 @section('content')
+    @if (session('info'))
+        <div class="alert alert-danger">
+            <strong>{{session('info')}}</strong>
+        </div>
+    @endif
+
     <div class="card">
         <div class="card-header">
             <a class="btn btn-success" href="{{route('admin.categories.create')}}">Agregar categoría</a>
@@ -30,7 +36,7 @@
                                 <a class="btn btn-primary btn-sm" href="{{route('admin.categories.edit', $category)}}">Editar</a>
                             </td>
                             <td width="10px">
-                                <form action="{{route('admin.categories.edit', $category)}}" method="post">
+                                <form action="{{route('admin.categories.destroy', $category)}}" method="post">
                                     @csrf
 
                                     @method('delete')
