@@ -81,12 +81,12 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'slug' => 'required|unique:categories,slug,$category->id'
+            'slug' => "required|unique:categories,slug,$category->id"
         ]);
 
         $category->update($request->all());
 
-        return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoría se actualió con éxito');
+        return redirect()->route('admin.categories.edit', $category)->with('info', 'La categoría se actualizó con éxito.');
     }
 
     /**
@@ -99,7 +99,7 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('info', 'La categoría se ha eliminado');
+        return redirect()->route('admin.categories.index')->with('info', 'La categoría se ha eliminado con éxito.');
    
     }
 }
