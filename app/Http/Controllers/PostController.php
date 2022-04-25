@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Post;
 
@@ -22,5 +23,13 @@ class PostController extends Controller
                             ->get();
 
         return view('posts.show', compact('post', 'similares'));
+    }
+
+    public function category(Category $category){
+        $posts = Post::where('status', 2)
+                        ->where('category_id', $category->id)
+                        ->latest('id')->paginate(4);
+
+        return view('posts.category', compact('category', 'posts'));
     }
 }
