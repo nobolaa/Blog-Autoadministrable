@@ -19,8 +19,14 @@ class UserSeeder extends Seeder
             'name' => 'Nabil Ali Asserhaou',
             'email' => 'nabilaliasserhaou@gmail.com',
             'password' => bcrypt('123456789')
-        ]);
+        ])->assignRole('Admin');
 
-        User::factory(3)->create();
+        User::create([
+            'name' => 'Blogger Prueba',
+            'email' => 'bloggerprueba@gmail.com',
+            'password' => bcrypt('123456789')
+        ])->assignRole('Blogger');
+
+        User::factory(1)->create();
     }
 }
