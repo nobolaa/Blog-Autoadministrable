@@ -13,11 +13,13 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct(){
+        $this->middleware('can:admin.posts.index')->only('index');
+        $this->middleware('can:admin.posts.create')->only('create', 'store');
+        $this->middleware('can:admin.posts.edit')->only('edit', 'update');
+        $this->middleware('can:admin.posts.destroy')->only('destroy');
+    }
+    
     public function index()
     {
         return view('admin.posts.index');
@@ -60,17 +62,6 @@ class PostController extends Controller
         }
 
         return redirect()->route('admin.posts.edit', $post)->with('info', 'El post se creó con éxito.');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Post $post)
-    {
-        return view('admin.posts.show');
     }
 
     /**
